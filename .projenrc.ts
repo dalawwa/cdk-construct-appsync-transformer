@@ -4,6 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 	eslint: true,
 	author: 'Dany Alawwa',
 	authorAddress: 'dalawwa@gmail.com',
+	repository: 'https://github.com/dalawwa/cdk-construct-appsync-transformer',
 	cdkVersion: '2.93.0',
 	defaultReleaseBranch: 'main',
 	jsiiVersion: '~5.0.0',
