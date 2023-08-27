@@ -1,6 +1,12 @@
 import { Fn, AppSync } from 'cloudform-types';
 import Resolver from 'cloudform-types/types/appSync/resolver';
-import { Kind, FieldDefinitionNode } from 'graphql';
+import {
+  Kind,
+  FieldDefinitionNode,
+  ObjectTypeDefinitionNode,
+  InterfaceTypeDefinitionNode,
+  DirectiveNode,
+} from 'graphql';
 import { raw, print, obj, str, toJson } from 'graphql-mapping-template';
 import {
   getDirectiveArgument,
@@ -29,8 +35,11 @@ const MAP_STACK_NAME = 'MapStack';
  * @param type The parent type name.
  * @param field The connection field name.
  */
-/*eslint-disable @typescript-eslint/no-explicit-any */
-function makeResolver(type: string, field: string, fromFieldName: string): Resolver {
+function makeResolver(
+  type: string,
+  field: string,
+  fromFieldName: string,
+): Resolver {
   return new Resolver({
     ApiId: Fn.GetAtt(ResourceConstants.RESOURCES.GraphQLAPILogicalID, 'ApiId'),
     DataSourceName: 'NONE',
@@ -89,22 +98,39 @@ export class SingleFieldMapTransformer extends Transformer {
     }
   };
 
-  /*eslint-disable @typescript-eslint/no-explicit-any */
-  public field = (parent: any, field: any, directive: any, acc: TransformerContext): void => {
+  public field = (
+    parent: ObjectTypeDefinitionNode | InterfaceTypeDefinitionNode,
+    definition: FieldDefinitionNode,
+    directive: DirectiveNode,
+    acc: TransformerContext,
+  ): void => {
     const parentTypeName = parent.name.value;
-    const fieldName = field.name.value;
+    const fieldName = definition.name.value;
 
     // add none ds if that does not exist
     const noneDS = acc.getResource(ResourceConstants.RESOURCES.NoneDataSource);
     if (!noneDS) {
-      acc.setResource(ResourceConstants.RESOURCES.NoneDataSource, noneDataSource());
+      acc.setResource(
+        ResourceConstants.RESOURCES.NoneDataSource,
+        noneDataSource(),
+      );
     }
 
-    acc.mapResourceToStack(MAP_STACK_NAME, ResolverResourceIDs.ResolverResourceID(parentTypeName, fieldName));
+    acc.mapResourceToStack(
+      MAP_STACK_NAME,
+      ResolverResourceIDs.ResolverResourceID(parentTypeName, fieldName),
+    );
 
     const fromFieldName = getDirectiveArgument(directive, 'field');
-    const fieldMappingResolver = makeResolver(parentTypeName, fieldName, fromFieldName);
-    acc.setResource(ResolverResourceIDs.ResolverResourceID(parentTypeName, fieldName), fieldMappingResolver);
+    const fieldMappingResolver = makeResolver(
+      parentTypeName,
+      fieldName,
+      fromFieldName,
+    );
+    acc.setResource(
+      ResolverResourceIDs.ResolverResourceID(parentTypeName, fieldName),
+      fieldMappingResolver,
+    );
     const templateResources = acc.template.Resources;
     if (!templateResources) return;
   };

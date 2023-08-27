@@ -1,7 +1,7 @@
-/*
- * This is taken from https://github.com/bright/cloudform/tree/master/packages/cloudform-types
- * cloudform-types has some overlapping type definitions and breaks with jsii builds
- */
+// /*
+//  * This is taken from https://github.com/bright/cloudform/tree/master/packages/cloudform-types
+//  * cloudform-types has some overlapping type definitions and breaks with jsii builds
+//  */
 
 export declare enum DataType {
   String = 'String',

@@ -22,7 +22,6 @@ import {
   ProjectionType,
   BillingMode,
   StreamViewType,
-  // TableProps,
 } from 'aws-cdk-lib/aws-dynamodb';
 import {
   Effect,
@@ -363,7 +362,7 @@ export class AppSyncTransformer extends Construct {
     const noneDataSource = this.appsyncAPI.addNoneDataSource('NONE');
 
     Object.keys(noneResolvers).forEach((resolverKey) => {
-      const resolver = resolvers[resolverKey];
+      const resolver = resolvers[resolverKey as keyof typeof resolvers];
       new Resolver(
         this.nestedAppsyncStack,
         `${resolver.typeName}-${resolver.fieldName}-resolver`,

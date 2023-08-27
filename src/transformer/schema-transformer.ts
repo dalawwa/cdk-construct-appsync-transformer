@@ -6,6 +6,7 @@ import {
 } from 'graphql-auth-transformer';
 import { ModelConnectionTransformer } from 'graphql-connection-transformer';
 import { DynamoDBModelTransformer } from 'graphql-dynamodb-transformer';
+import { FunctionTransformer } from 'graphql-function-transformer';
 import { HttpTransformer } from 'graphql-http-transformer';
 import { KeyTransformer } from 'graphql-key-transformer';
 import {
@@ -28,12 +29,6 @@ import {
 import { CustomVTLTransformer } from './custom-vtl-transformer';
 import { Resource } from './resource';
 import { TtlTransformer } from './ttl-transformer';
-
-// Rebuilt this from cloudform-types because it has type errors
-
-// Import this way because FunctionTransformer.d.ts types were throwing an eror. And we didn't write this package so hope for the best :P
-// eslint-disable-next-line
-import { FunctionTransformer } from "graphql-function-transformer";
 
 export interface SchemaTransformerProps {
   /**
