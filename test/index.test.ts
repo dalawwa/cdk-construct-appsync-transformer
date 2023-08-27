@@ -1291,7 +1291,7 @@ test('Can Set Custom Directory', () => {
   const mockApp = new App();
   const stack = new Stack(mockApp, 'custom-vtl-stack');
 
-  const customDir = path.join(process.cwd(), '..', 'cdk-appsync-transformer');
+  const customDir = path.join(process.cwd());
 
   new AppSyncTransformer(stack, 'custom-vtl-transformer', {
     schemaPath: customVtlTestSchemaPath,
