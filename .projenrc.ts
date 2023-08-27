@@ -60,10 +60,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
       target: "es2022",
     },
   },
-  bundledDeps: ["graphql-transformer-core", "@aws-amplify/amplify-cli-core"],
-  deps: [
-    "aws-cdk-lib",
+  bundledDeps: [
     "graphql-transformer-core",
+    "@aws-amplify/amplify-cli-core",
     "graphql@^15.5.0",
     "graphql-auth-transformer",
     "graphql-connection-transformer",
@@ -74,8 +73,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
     "graphql-mapping-template",
     "graphql-relational-schema-transformer",
     "graphql-transformer-common",
+    "graphql-transformer-core",
+    "graphql-ttl-transformer", // Community transformer
     "graphql-versioned-transformer",
-    "@aws-amplify/graphql-transformer-interfaces",
+  ],
+  deps: [
+    "aws-cdk-lib",
     "cloudform-types",
   ] /* Runtime dependencies of this module. */,
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
