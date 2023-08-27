@@ -7,6 +7,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: "main",
   jsiiVersion: "~5.0.0",
   name: "appsync-transformer",
+  minNodeVersion: "18.12.0",
   packageManager: javascript.NodePackageManager.YARN2,
   gitignore: [
     "appsync/*",
@@ -59,7 +60,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
       target: "es2022",
     },
   },
-  bundledDeps: ["graphql-transformer-core"],
+  bundledDeps: ["graphql-transformer-core", "@aws-amplify/amplify-cli-core"],
   deps: [
     "aws-cdk-lib",
     "graphql-transformer-core",
@@ -74,7 +75,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     "graphql-relational-schema-transformer",
     "graphql-transformer-common",
     "graphql-versioned-transformer",
-    "@aws-amplify/amplify-cli-core",
     "@aws-amplify/graphql-transformer-interfaces",
     "cloudform-types",
   ] /* Runtime dependencies of this module. */,
