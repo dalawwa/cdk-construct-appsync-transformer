@@ -2,7 +2,7 @@
   "name": "appsync-transformer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dany.alawwa/testProjen.git"
+    "url": "https://github.com/dalawwa/cdk-construct-appsync-transformer"
   },
   "scripts": {
     "build": "npx projen build",
