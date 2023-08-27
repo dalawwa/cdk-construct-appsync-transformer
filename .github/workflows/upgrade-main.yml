@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 18.12.0
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm ci
       - name: Upgrade dependencies
         run: npx projen upgrade
       - name: Find mutations

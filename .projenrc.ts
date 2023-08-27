@@ -22,7 +22,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 			tabWidth: 2,
 		},
 	},
-	packageManager: javascript.NodePackageManager.YARN2,
+	packageManager: javascript.NodePackageManager.NPM,
 	gitignore: [
 		'appsync/*',
 		'customtest/*',

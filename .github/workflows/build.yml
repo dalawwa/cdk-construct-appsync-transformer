@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 18.12.0
       - name: Install dependencies
-        run: yarn install
+        run: npm install
       - name: build
         run: npx projen build
       - name: Find mutations
@@ -103,7 +103,7 @@ jobs:
       - name: Prepare Repository
         run: mv dist .repo
       - name: Install Dependencies
-        run: cd .repo && yarn install --immutable
+        run: cd .repo && npm ci
       - name: Create js artifact
         run: cd .repo && npx projen package:js
       - name: Collect js Artifact
