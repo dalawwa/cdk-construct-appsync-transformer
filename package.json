@@ -1,5 +1,5 @@
 {
-  "name": "testProjen",
+  "name": "appsync-transformer",
   "repository": {
     "type": "git",
     "url": "https://github.com/dany.alawwa/testProjen.git"
@@ -30,7 +30,7 @@
   },
   "author": {
     "name": "Dany Alawwa",
-    "email": "dany.alawwa@drklein.de",
+    "email": "dalawwa@gmail.com",
     "organization": false
   },
   "devDependencies": {
